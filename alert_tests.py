@@ -42,7 +42,7 @@ class OHLC_Test(unittest.TestCase):
             'O':10, 'H':11, 'L':9, 'C':10.5, 'V':100, 'action': 0,
             }
 
-        resp = requests.post('http://0.0.0.0:8123/tv', json=data)
+        resp = requests.post('http://192.168.101.18:8123/tv', json=data)
         print('Status Code: {}'.format(resp.status_code))
         print('Response: {}'.format(resp.text))
 
@@ -60,7 +60,7 @@ class Signal_Test(unittest.TestCase):
             'symbol':'ETH/USD', 'action':1
             }
 
-        resp = requests.post('http://0.0.0.0:8123/tv', json=data)
+        resp = requests.post('http://192.168.101.18:8123/tv', json=data)
         print('Status Code: {}'.format(resp.status_code))
         print('Response: {}'.format(resp.text))
 
@@ -72,7 +72,7 @@ class Signal_Test(unittest.TestCase):
             'symbol':'ETH/USD', 'action':-1
             }
 
-        resp = requests.post('http://0.0.0.0:8123/tv', json=data)
+        resp = requests.post('http://192.168.101.18:8123/tv', json=data)
         print('Status Code: {}'.format(resp.status_code))
         print('Response: {}'.format(resp.text))
 
@@ -84,7 +84,7 @@ class Signal_Test(unittest.TestCase):
              'symbol':'ETH/USD', 'action':0
              }
 
-        resp = requests.post('http://0.0.0.0:8123/tv', json=data)
+        resp = requests.post('http://192.168.101.18:8123/tv', json=data)
         print('Status Code: {}'.format(resp.status_code))
         print('Response: {}'.format(resp.text))
 

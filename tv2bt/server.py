@@ -28,7 +28,7 @@ from flask import Flask, request, render_template
 from threading import Thread
 import queue
 import ast
-from .config import *
+from tv2bt.config import *   # modified "from tv2bt.config import * "
 import logging
 
 
@@ -40,6 +40,10 @@ log.setLevel(logging.ERROR)
 # ------------------------------------------------------------------------------
 data_queue = dict()
 server = Flask(__name__)
+
+@server.route("/")
+def check_server():
+    return "<p>Hello, World! The server is on</p>"
 
 @server.route("/tv", methods=['POST'])
 def alert():
@@ -55,12 +59,10 @@ def alert():
     else:
         # Check if the key has a queue, if not, make the key.
         if data['symbol'] not in data_queue.keys():
-            print("WARNING: Symbol not found for alert receieved: {}".format(data['symbol']))
-            return 'Bad Request', 400
+            data_queue[data['symbol']] = []
 
         try:
-
-            data_queue[data['symbol']].put(data)
+            data_queue[data['symbol']].append(data)
 
         except KeyError as e:
             print("WARNING: Data Received not in the correct format. Missing Key: {}".format(e))
@@ -69,5 +71,14 @@ def alert():
 
         return 'OK', 200
 
+'''
+Consider putting app.run() behind an if __name__ == "__main__"  
 server_thread = Thread(target=server.run, kwargs={'host':'0.0.0.0', 'port':PORT, 'debug': False})
 server_thread.start()
+'''
+
+
+if __name__ == "__main__":
+    # server_thread = Thread(target=server.run, kwargs={'host': '0.0.0.0', 'port': PORT, 'debug': False})
+    # server_thread.start()
+    server.run(debug=False, port=PORT, host='0.0.0.0')

@@ -84,13 +84,13 @@ class TVTest(bt.Strategy):
 '''
 {'symbol':'[INSERT TICKER]', 'DT':'{{time}}', 'O':{{open}}, 'H':{{high}}, 'L':{{low}}, 'C':{{close}}, 'V':{{volume}}, 'action':0}
 '''
-# 2. SIGNAL OPNLY
+# 2. SIGNAL ONLY
 #    Again use the same ticker as your broker unless you are adding more than one
 #    Signal or data feed for a symbol. If so, you will need to create your own tickers
 #    and process them accordingly in the strategy. I.e loop through all datas,
 #    decide what to do and then create your order using the data feed that has the
 #    correct ticker that the broker is expecting.
-#    OHLC can be ommitted and will just appear as NaN
+#    OHLC can be omitted and will just appear as NaN
 '''
 {'symbol':'[INSERT TICKER]', 'action':1}
 '''
